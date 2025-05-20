@@ -12,41 +12,55 @@
 
     <div id="grid"></div>
 
-    <button id="startButton">Start</button>
-    <button id="stopButton">Stop</button>
-    <button id="randomButton">Random</button>
-    <button id="clearButton">Clear</button>
+    <div class="button-container">
+        <div class="button-group">
+            <button id="startButton">Start</button>
+            <button id="stopButton">Stop</button>
+        </div>
+        <div class="button-group">
+            <button id="randomButton">Random</button>
+            <button id="clearButton">Clear</button>
+        </div>
+    </div>
 
-    <form action="/action_page.php">
-        <!-- Slider to control simulation speed -->
+    <div class="control-panel">
+        <div class="control-group">
+            <label for="speedRange">Speed: </label>
+            <input type="range" id="speedRange" min="50" max="10000" value="100" step="10">
+            <span id="speedValue">100 ms</span>
+        </div>
         
-        <label for="speedRange">Speed: </label>
-        <input type="range" id="speedRange" min="50" max="10000" value="100" step="10">
-        <span id="speedValue">100 ms</span>
+        <div class="control-group">
+            <label for="cellColorPicker">Alive Cell Color: </label>
+            <input type="color" id="cellColorPicker" value="#f39c12">
+        </div>
         
-
+        <div class="control-group">
+            <label for="cellPicturePicker">Alive Cell Picture: </label>
+            <input type="file" id="cellPicturePicker" accept="image/*">
+        </div>
         
-        <label for="cellColorPicker">Alive Cell Color: </label>
-        <input type="color" id="cellColorPicker" value="#f39c12">
-        <input type="reset" value="Reset">
-        
-        
-        
-        <label for="cellPicturePicker">Alive Cell Picture: </label>
-        <input type="file" id="cellPicturePicker" accept="image/*">
-        
-    </form>
+        <div class="control-group">
+            <input type="reset" value="Reset Settings" id="resetButton">
+        </div>
+    </div>
 
     <!-- Display the step count -->
     <p>Steps Taken: <span id="stepCounter">0</span></p>
 
     <!-- Save and Load Pattern Controls -->
-    <button id="savePatternButton">Save Pattern</button>
-    <select id="loadPatternSelect">
-        <option value="">Select a pattern to load</option>
-    </select>
-    <button id="loadPatternButton">Load Pattern</button>
-    <button id="deletePatternButton">Delete Pattern</button>
+    <div class="button-container">
+        <div class="button-group pattern-controls">
+            <button id="savePatternButton">Save Pattern</button>
+            <button id="loadPatternButton">Load Pattern</button>
+            <button id="deletePatternButton">Delete Pattern</button>
+        </div>
+        <div class="pattern-select">
+            <select id="loadPatternSelect">
+                <option value="">Select a pattern to load</option>
+            </select>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 

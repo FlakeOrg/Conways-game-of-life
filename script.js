@@ -243,64 +243,8 @@ cellColorPicker.addEventListener("input", function() {
     updateGrid(); // Repaint the grid with new color
 });
 
-
-// Reset button resets speed, color, and grid
-form.addEventListener("reset", function() {
-    speedRange.value = 100;
-    speed = 100;
-    speedValue.textContent = '100 ms';
-    aliveCellColor = '#f39c12';
-    cellColorPicker.value = aliveCellColor;
-    if (intervalId) {
-        clearInterval(intervalId);
-        intervalId = setInterval(getNextGeneration, speed);
-    }
-    updateGrid();
-    stepCount = 0;
-    stepCounterElement.textContent = stepCount;
-});
-
-let aliveCellImage = null; // Variable to store the alive cell image
-
-// Update the display of the grid
-function updateGrid() {
-    gridElement.childNodes.forEach((cell, index) => {
-        const row = Math.floor(index / cols);
-        const col = index % cols;
-        if (grid[row][col] === 1) {
-            if (aliveCellImage) {
-                cell.style.backgroundImage = `url(${aliveCellImage})`;
-                cell.style.backgroundSize = 'cover';
-                cell.style.backgroundColor = 'transparent'; // Ensure no background color shows
-                cell.style.boxShadow = 'none'; // Remove the shadow for image-based cells
-            } else {
-                cell.style.backgroundImage = 'none';
-                cell.style.backgroundColor = aliveCellColor; // Use the dynamic color
-                cell.style.boxShadow = `0 2px 5px ${aliveCellColor}88`;
-            }
-        } else {
-            cell.style.backgroundImage = 'none';
-            cell.style.backgroundColor = '#3e3e3e'; // Inactive cell color
-            cell.style.boxShadow = 'none';
-        }
-    });
-}
-
-// Handle image upload for alive cells
-document.getElementById("cellPicturePicker").addEventListener("change", function(event) {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            aliveCellImage = e.target.result; // Save the image URI
-            updateGrid(); // Repaint the grid with the new image
-        };
-        reader.readAsDataURL(file); // Read the image file as a data URI
-    }
-});
-
 // Reset button resets speed, color, image, and grid
-form.addEventListener("reset", function() {
+document.getElementById("resetButton").addEventListener("click", function() {
     speedRange.value = 100;
     speed = 100;
     speedValue.textContent = '100 ms';

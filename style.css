@@ -1,4 +1,3 @@
-
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
@@ -141,6 +140,111 @@ input[type="range"]::-webkit-slider-thumb {
     color: #f1f1f1;
 }
 
+/* Control Panel Styling */
+.control-panel {
+    display: flex;
+    flex-direction: column;
+    background-color: #2e2e2e;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.control-group label {
+    min-width: 150px;
+    margin-right: 15px;
+    font-size: 16px;
+    color: #f1f1f1;
+}
+
+.control-group input[type="range"] {
+    flex: 1;
+    min-width: 200px;
+    height: 8px;
+    -webkit-appearance: none;
+    background: #444;
+    border-radius: 4px;
+    margin: 0 15px 0 0;
+}
+
+.control-group input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    background-color: #f39c12;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.control-group input[type="color"] {
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.control-group:last-child {
+    justify-content: center;
+}
+
+#resetButton {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.5);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#resetButton:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+#resetButton:active {
+    transform: translateY(0);
+}
+
+/* Pattern Controls Styling */
+.pattern-controls {
+    margin-bottom: 10px;
+}
+
+.pattern-select {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.pattern-select select {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    border-radius: 6px;
+    background-color: #2e2e2e;
+    color: #f1f1f1;
+    border: 1px solid #444;
+    font-size: 16px;
+    cursor: pointer;
+}
+
 /* Responsive Design */
 @media (max-width: 600px) {
     #grid {
@@ -157,6 +261,28 @@ input[type="range"]::-webkit-slider-thumb {
 
     h1 {
         font-size: 1.8em;
+    }
+    
+    .control-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .control-group label {
+        margin-bottom: 5px;
+    }
+    
+    .control-group input[type="range"] {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    
+    #speedValue {
+        text-align: left;
+    }
+    
+    #resetButton {
+        margin: 10px auto;
     }
 }
 
@@ -225,4 +351,42 @@ form label, form input, form span {
     font-size: 14px; /* Adjust font size */
     cursor: pointer; /* Change cursor to pointer */
     box-shadow: 0 4px 8px rgba(103, 8, 191, 0.5);
+}
+
+/* Button Container Styling */
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.button-group {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    justify-content: center;
+}
+
+.button-group button {
+    flex: 1;
+    max-width: 150px;
+}
+
+/* Responsive design for button container */
+@media (max-width: 600px) {
+    .button-container {
+        gap: 10px;
+    }
+    
+    .button-group {
+        gap: 10px;
+    }
+    
+    .button-group button {
+        padding: 8px 12px;
+    }
 }
