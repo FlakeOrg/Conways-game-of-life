@@ -7,6 +7,7 @@ let intervalId;
 let speed = 100; // Default speed in ms
 let aliveCellColor = '#f39c12'; // Default alive cell color
 let stepCount = 0; // Step counter to track generations
+let aliveCellImage = null; // To store the image data
 
 const gridElement = document.getElementById("grid");
 const speedRange = document.getElementById("speedRange");
@@ -67,20 +68,46 @@ function toggleCell(row, col) {
     updateGrid();
 }
 
-// Update the display of the grid
 function updateGrid() {
     gridElement.childNodes.forEach((cell, index) => {
         const row = Math.floor(index / cols);
         const col = index % cols;
         if (grid[row][col] === 1) {
-            cell.style.backgroundColor = aliveCellColor; // Use the dynamic color
-            cell.style.boxShadow = `0 2px 5px ${aliveCellColor}88`;
+            if (aliveCellImage) {
+                cell.style.backgroundColor = "";
+                cell.style.backgroundImage = `url(${aliveCellImage})`;
+                cell.style.backgroundSize = "cover";
+                cell.style.backgroundPosition = "center";
+                cell.style.boxShadow = `0 2px 5px ${aliveCellColor}88`;
+            } else {
+                cell.style.backgroundImage = "";
+                cell.style.backgroundColor = aliveCellColor;
+                cell.style.boxShadow = `0 2px 5px ${aliveCellColor}88`;
+            }
         } else {
-            cell.style.backgroundColor = '#3e3e3e'; // Inactive cell color
+            cell.style.backgroundImage = "";
+            cell.style.backgroundColor = '#3e3e3e';
             cell.style.boxShadow = 'none';
         }
     });
 }
+
+const cellPicturePicker = document.getElementById("cellPicturePicker");
+
+cellPicturePicker.addEventListener("change", function(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            aliveCellImage = e.target.result; // This is a base64 data URL
+            updateGrid();
+        };
+        reader.readAsDataURL(file);
+    } else {
+        aliveCellImage = null;
+        updateGrid();
+    }
+});
 
 // Apply the rules of Conway's Game of Life
 function getNextGeneration() {
