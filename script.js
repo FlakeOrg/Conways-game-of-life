@@ -1,5 +1,5 @@
-const rows = 50;
-const cols = 50;
+let rows = 50;
+let cols = 50;
 let grid = [];
 let isDrawing = false;
 let isErasing = false;
@@ -16,6 +16,8 @@ const cellColorPicker = document.getElementById("cellColorPicker");
 const stepCounterElement = document.getElementById("stepCounter");
 const form = document.querySelector('form');
 const loadPatternSelect = document.getElementById('loadPatternSelect');
+const gridWidthInput = document.getElementById("gridWidth");
+const gridHeightInput = document.getElementById("gridHeight");
 
 // Initialize the grid with dead cells
 function createGrid() {
@@ -244,6 +246,27 @@ function updatePatternSelect() {
 // Initialize the grid on page load
 createGrid();
 updatePatternSelect();
+
+function updateGridSize() {
+    let newCols = parseInt(gridWidthInput.value, 10);
+    let newRows = parseInt(gridHeightInput.value, 10);
+
+    // Basic validation (optional, prevents very small or huge grids)
+    if (isNaN(newCols) || newCols < 5) newCols = 5;
+    if (isNaN(newRows) || newRows < 5) newRows = 5;
+    if (newCols > 200) newCols = 200;
+    if (newRows > 200) newRows = 200;
+
+    cols = newCols;
+    rows = newRows;
+    createGrid();
+    updateGrid();
+    stepCount = 0;
+    stepCounterElement.textContent = stepCount;
+}
+
+gridWidthInput.addEventListener('change', updateGridSize);
+gridHeightInput.addEventListener('change', updateGridSize);
 
 // Event listeners
 document.getElementById("startButton").addEventListener("click", startGame);
