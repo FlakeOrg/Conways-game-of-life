@@ -1,5 +1,5 @@
-let rows = 50;
-let cols = 50;
+const rows = 50;
+const cols = 50;
 let grid = [];
 let isDrawing = false;
 let isErasing = false;
@@ -16,8 +16,6 @@ const cellColorPicker = document.getElementById("cellColorPicker");
 const stepCounterElement = document.getElementById("stepCounter");
 const form = document.querySelector('form');
 const loadPatternSelect = document.getElementById('loadPatternSelect');
-const gridWidthInput = document.getElementById("gridWidth");
-const gridHeightInput = document.getElementById("gridHeight");
 
 // Initialize the grid with dead cells
 function createGrid() {
@@ -70,11 +68,14 @@ function toggleCell(row, col) {
     updateGrid();
 }
 
+// Update the display of the grid
 function updateGrid() {
     gridElement.childNodes.forEach((cell, index) => {
         const row = Math.floor(index / cols);
         const col = index % cols;
         if (grid[row][col] === 1) {
+            cell.style.backgroundColor = aliveCellColor; // Use the dynamic color
+            cell.style.boxShadow = `0 2px 5px ${aliveCellColor}88`;
             if (aliveCellImage) {
                 cell.style.backgroundColor = "";
                 cell.style.backgroundImage = `url(${aliveCellImage})`;
@@ -87,6 +88,7 @@ function updateGrid() {
                 cell.style.boxShadow = `0 2px 5px ${aliveCellColor}88`;
             }
         } else {
+            cell.style.backgroundColor = '#3e3e3e'; // Inactive cell color
             cell.style.backgroundImage = "";
             cell.style.backgroundColor = '#3e3e3e';
             cell.style.boxShadow = 'none';
@@ -246,27 +248,6 @@ function updatePatternSelect() {
 // Initialize the grid on page load
 createGrid();
 updatePatternSelect();
-
-function updateGridSize() {
-    let newCols = parseInt(gridWidthInput.value, 10);
-    let newRows = parseInt(gridHeightInput.value, 10);
-
-    // Basic validation (optional, prevents very small or huge grids)
-    if (isNaN(newCols) || newCols < 5) newCols = 5;
-    if (isNaN(newRows) || newRows < 5) newRows = 5;
-    if (newCols > 200) newCols = 200;
-    if (newRows > 200) newRows = 200;
-
-    cols = newCols;
-    rows = newRows;
-    createGrid();
-    updateGrid();
-    stepCount = 0;
-    stepCounterElement.textContent = stepCount;
-}
-
-gridWidthInput.addEventListener('change', updateGridSize);
-gridHeightInput.addEventListener('change', updateGridSize);
 
 // Event listeners
 document.getElementById("startButton").addEventListener("click", startGame);
