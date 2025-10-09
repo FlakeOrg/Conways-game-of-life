@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Conway's Game of Life</h1>
-    <h3>A simulation re-made by Flake Org </h3>
+    <h3>A simulation re-made by Flake Org</h3>
 
     <div id="grid"></div>
 
@@ -40,7 +40,6 @@
             <input type="file" id="cellPicturePicker" accept="image/*">
         </div>
 
-        <!-- RANDOM COLORS MODE TOGGLE -->
         <div class="control-group">
             <label for="randomColorsToggle">Random Colors Mode: </label>
             <input type="checkbox" id="randomColorsToggle">
@@ -49,12 +48,19 @@
         <div class="control-group">
             <input type="reset" value="Reset Settings" id="resetButton">
         </div>
+
+	<div class="control-group">
+    	<label for="rowsInput">Rows:</label>
+    	<input type="number" id="rowsInput" min="5" max="200" value="50">
+    	<label for="colsInput">Cols:</label>
+    	<input type="number" id="colsInput" min="5" max="200" value="50">
+    	<button id="resizeGridButton">Resize Grid</button>
+	</div>
+
     </div>
 
-    <!-- Display the step count -->
     <p>Steps Taken: <span id="stepCounter">0</span></p>
 
-    <!-- Save and Load Pattern Controls -->
     <div class="button-container">
         <div class="button-group pattern-controls">
             <button id="savePatternButton">Save Pattern</button>
@@ -70,11 +76,10 @@
 
     <script src="script.js"></script>
 
-    <h1>What is Conway's game of life?</h1>
-    <p> Conway's game of life was a game made by the mathematician <a href="https://en.wikipedia.org/wiki/John_Horton_Conway">John Horton Conway</a>. Conway's game of life is a cellular automation use[...]
-    <h3>Any live cell with less than 2 live neighbors die</h3>
-    <h3>Any live cell with over 3 live neighbors die</h3>
-    <h3>Any dead cell with exactly 3 live neighbors become alive</h3>
-    
+    <h1>What is Conway's Game of Life?</h1>
+    <p>Conway's game of life was a game made by the mathematician <a href="https://en.wikipedia.org/wiki/John_Horton_Conway">John Horton Conway</a>. Conway's game of life is a cellular automaton used to simulate simple forms of evolution.</p>
+    <h3>Any live cell with less than 2 live neighbors dies</h3>
+    <h3>Any live cell with over 3 live neighbors dies</h3>
+    <h3>Any dead cell with exactly 3 live neighbors becomes alive</h3>
 </body>
 </html>
