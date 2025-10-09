@@ -17,6 +17,8 @@ h1 {
     letter-spacing: 1px;
 }
 
+/* Remove the hardcoded 50x50 from CSS; JS will set the correct repeat() inline.
+   Provide reasonable defaults for small screens; JS will override for desktop. */
 #grid {
     display: grid;
     grid-template-columns: repeat(50, 18px);
@@ -389,4 +391,39 @@ form label, form input, form span {
     .button-group button {
         padding: 8px 12px;
     }
+}
+
+
+#copyButton, #pasteButton {
+    background-color: #52c1ff;
+}
+#copyButton:hover, #pasteButton:hover {
+    background-color: #2596be;
+}
+
+#rowsInput, #colsInput {
+    width: 70px;
+    margin-right: 10px;
+    padding: 5px;
+    border-radius: 4px;
+    border: none;
+    background-color: #3e3e3e;
+    color: #fff;
+    text-align: center;
+}
+
+#resizeGridButton {
+    background-color: #16a085;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(22, 160, 133, 0.5);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#resizeGridButton:hover {
+    background-color: #138d75;
+    transform: translateY(-2px);
 }
