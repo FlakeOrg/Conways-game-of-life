@@ -19,6 +19,7 @@ const cellColorPicker = document.getElementById("cellColorPicker");
 const stepCounterElement = document.getElementById("stepCounter");
 const loadPatternSelect = document.getElementById("loadPatternSelect");
 const randomColorsToggle = document.getElementById("randomColorsToggle");
+const wonder = document.getElementById("wonder");
 
 // --- GRID CREATION ---
 function createGrid() {
@@ -249,11 +250,16 @@ function getAliveNeighborsColors(row, col) {
 
 // --- SIMULATION CONTROLS ---
 function startGame() {
-    if (!intervalId) intervalId = setInterval(getNextGeneration, speed);
+    if (!intervalId) {
+	intervalId = setInterval(getNextGeneration, speed);
+	wonder.play();
+	}
 }
 function stopGame() {
     clearInterval(intervalId);
     intervalId = null;
+    wonder.pause();
+    wonder.currentTime = 0; 
 }
 function randomizeGrid() {
     for (let row = 0; row < rows; row++)
