@@ -9,7 +9,7 @@ let aliveCellColor = '#f39c12'; // Default alive cell color
 let stepCount = 0; // Step counter
 let aliveCellImage = null; // To store the image data
 let randomColorsMode = false;
-let kanyeLife = false; //kanye time
+let kanyeTime = false; //kanye time
 
 
 const gridElement = document.getElementById("grid");
@@ -125,7 +125,7 @@ function updateGrid() {
     }
 
     if (kanyeTime) {
-        
+        aliveCellImage = kanye.png
     }
 }
 
@@ -133,7 +133,7 @@ function updateGrid() {
 const cellPicturePicker = document.getElementById("cellPicturePicker");
 cellPicturePicker.addEventListener("change", (event) => {
     const file = event.target.files[0];
-    if (file) {
+    if (file && !kanyeTime) {
         const reader = new FileReader();
         reader.onload = (e) => {
             aliveCellImage = e.target.result;
@@ -427,4 +427,5 @@ document.addEventListener("mouseup", () => {
         updateGrid();
     }
 });
+
 
