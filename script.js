@@ -125,7 +125,7 @@ function updateGrid() {
     }
 
     if (kanyeTime) {
-        aliveCellImage = kanye.png
+        aliveCellImage = 'kanye.png';
     }
 }
 
@@ -144,6 +144,12 @@ cellPicturePicker.addEventListener("change", (event) => {
         aliveCellImage = null;
         updateGrid();
     }
+});
+
+document.getElementById("kanyeLife").addEventListener("change", (e) => {
+    kanyeTime = e.target.checked;
+    aliveCellImage = kanyeTime ? 'kanye.png' : null; // switch between normal and kanye
+    updateGrid();
 });
 
 // --- RANDOM COLOR MODE ---
@@ -427,5 +433,4 @@ document.addEventListener("mouseup", () => {
         updateGrid();
     }
 });
-
 
