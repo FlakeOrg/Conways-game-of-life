@@ -9,6 +9,7 @@ let aliveCellColor = '#f39c12'; // Default alive cell color
 let stepCount = 0; // Step counter
 let aliveCellImage = null; // To store the image data
 let randomColorsMode = false;
+let kanyeLife = false; //kanye time
 
 
 const gridElement = document.getElementById("grid");
@@ -121,6 +122,10 @@ function updateGrid() {
         }
     } else {
         gridElement.childNodes.forEach((cell) => (cell.style.outline = 'none'));
+    }
+
+    if (kanyeTime) {
+        
     }
 }
 
@@ -390,6 +395,7 @@ resizeGridButton.addEventListener("click", () => {
 });
 
 
+
 // --- COPY & PASTE SELECTION ---
 gridElement.addEventListener("mousedown", (e) => {
     if (isPasteMode) return;
@@ -421,3 +427,4 @@ document.addEventListener("mouseup", () => {
         updateGrid();
     }
 });
+
