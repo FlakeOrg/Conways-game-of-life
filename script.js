@@ -10,7 +10,7 @@ let stepCount = 0; // Step counter
 let aliveCellImage = null; // To store the image data
 let randomColorsMode = false;
 let kanyeTime = false; //kanye time
-
+let kanyeSong = 0;
 
 const gridElement = document.getElementById("grid");
 const speedRange = document.getElementById("speedRange");
@@ -20,6 +20,7 @@ const stepCounterElement = document.getElementById("stepCounter");
 const loadPatternSelect = document.getElementById("loadPatternSelect");
 const randomColorsToggle = document.getElementById("randomColorsToggle");
 const wonder = document.getElementById("wonder");
+const olive = document.getElementById("oliveDelights");
 
 // --- GRID CREATION ---
 function createGrid() {
@@ -252,14 +253,25 @@ function getAliveNeighborsColors(row, col) {
 function startGame() {
     if (!intervalId) {
 	intervalId = setInterval(getNextGeneration, speed);
-	wonder.play();
+	if (kanyeTime){
+	// Kanye time
+	kanyeSong = Math.floor(Math.random() * 2) + 1;
+	if (kanyeSong === 1) {
+		wonder.play();
+		}
+		else{
+		olive.play();
+		}
+	}
 	}
 }
 function stopGame() {
     clearInterval(intervalId);
     intervalId = null;
     wonder.pause();
+	olive.pause();
     wonder.currentTime = 0; 
+	olive.currentTime = 0;
 }
 function randomizeGrid() {
     for (let row = 0; row < rows; row++)
@@ -439,4 +451,5 @@ document.addEventListener("mouseup", () => {
         updateGrid();
     }
 });
+
 
