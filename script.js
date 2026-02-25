@@ -126,9 +126,6 @@ function updateGrid() {
         gridElement.childNodes.forEach((cell) => (cell.style.outline = 'none'));
     }
 
-    if (kanyeTime) {
-        aliveCellImage = 'kanye.png';
-    }
 }
 
 // --- IMAGE PICKER ---
@@ -451,5 +448,6 @@ document.addEventListener("mouseup", () => {
         updateGrid();
     }
 });
+
 
 
